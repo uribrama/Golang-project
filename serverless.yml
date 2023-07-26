@@ -1,0 +1,47 @@
+service: persons-function
+frameworkVersion: 
+provider:
+  name: aws
+  runtime: go1.x
+  profile: serverless
+  region: us-east-2
+  iam:
+    role: arn:aws:iam::283132657931:role/lambda-ex
+
+functions:
+  api:
+    handler: persons
+    timeout: 15
+    events:
+      - http:
+          path: /persons
+          method: get
+          cors: true
+      - http:
+          path: /persons
+          method: post
+          cors: true
+      - http:
+          path: /persons/healthcheck
+          method: get
+          cors: true
+    environment:
+      DB_HOST: ${env:RDS_HOST}
+      DB_NAME: ${env:DB_NAME}
+      DB_PASSWORD: ${env:RDS_PASSWORD}
+      DB_PORT: ${env:DB_PORT}
+      DB_USER: ${env:DB_USER}
+      GO_ENV: testing
+    vpc:
+      securityGroupIds:
+        - sg-0a4d4a92af9bb2b5f 
+      subnetIds:
+        - subnet-093eaa69f5e945f41
+        - subnet-0099e1bfcb4d9ddc7
+        - subnet-0a5662607fd80a799
+
+package:
+  artifact: artifacts/persons.zip
+
+
+ 
