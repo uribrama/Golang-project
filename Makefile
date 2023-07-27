@@ -35,7 +35,6 @@ zip-%:
 	zip -Xj artifacts/$*.zip out/$*
 	-zip -ur artifacts/$*.zip config
 
-
 lint-lambdas:
 	go fmt ./lambdas/...
 	git diff --exit-code
