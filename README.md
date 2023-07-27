@@ -1,5 +1,6 @@
 # Golang-project
-
+##
+Example project using golang gin gonic as a framework. Postgresql for database. AWS for infraestructure, using Lambda, API Gateway and other services. Serverless framework for building and deploying app.
 
 ## CMD
 To insert data run from root:
